@@ -1,0 +1,133 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+/* global styles */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color: aquamarine;
+    background: aqua;
+    background: -webkit-linear-gradient(top left, aqua 0%, #323232 100%);
+    background: linear-gradient(to bottom right, aqua 0%, #323232 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+::placeholder{
+    text-align: center;
+    color: aqua;
+    text-transform: uppercase;
+}
+/* CSS FOR PRE-LOADER */
+
+/* CSS FOR LANDING SECTION */
+#landing-section{
+    background: rgba(46, 46, 46, 0.75);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 8.0px );
+    -webkit-backdrop-filter: blur( 8.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+/* styling headers */
+#landing-section .header{
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.header .logo{
+    width: 10%;
+    height: 10%;
+}
+.header .logo img{
+    width: 100%;
+}
+.header .titles{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.header .titles .title{
+    margin-top: 10px;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.header .subtitle{
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+/* styling form */
+#landing-section .main-container{
+   width: 100%;
+   height: 50vh;
+   padding: 20px;
+}
+
+#landing-section .main-container .form{
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    border: rgba( 255, 255, 255, 0.18 ) solid 3px;
+    border-radius: 5px;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+}
+.main-container .form label{
+    width: 100%;
+    text-transform: uppercase;
+    text-align: center;
+    margin:8px 0px;
+    display: none;
+}
+.main-container .form .input{
+    width: 75%;
+    height: 5vh;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    padding: 8px;
+    background-color: rgba( 255, 255, 255, 0.18 );;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.main-container .form .buttons{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.form .buttons .button{
+    width: 50%;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.295);
+    color: rgba(0, 255, 255, 0.575);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+

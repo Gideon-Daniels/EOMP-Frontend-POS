@@ -12,15 +12,15 @@
     <div id="landing-section">
         <div class="header">
             <div class="logo">
-                <img src="" alt="logo">
+                <img src="../images/PinClipart.com_free-stock-clipart_81271.png" alt="logo">
             </div>
             <div class="titles">
                 <h1 class="title">Registration</h1>
                 <h3 class="subtitle">Sign up to setup your very first account within your local network.</h3>
             </div>
         </div>
-        <div class="main-content">
-            <form action="">
+        <div class="main-container">
+            <form class="form" action="https://enigmatic-sierra-22968.herokuapp.com/user-registration/" method="POST">
                 <label class="label" for="name">name</label>
                 <input class="input" type="text" name="name" id="name" required placeholder="name">
                 <label class="label" for="surname">surname</label>
@@ -34,13 +34,14 @@
                 <label class="label" for="confirm-password">confirm-password</label>
                 <input class="input"type="password" name="confirm-password" id="confirm-password" required placeholder="confirm password">
                 <div class="buttons">
-                    <input type="submit" value="Register">
+                    <input class="button" type="submit" value="Register">
                 </div>
             </form>
         </div>
-        <footer>
+        <!-- <footer>
             Made By Gideon Daniels
-        </footer>
+        </footer> -->
     </div>
+    <script src="../scripts/main.js"></script>
 </body>
 </html>

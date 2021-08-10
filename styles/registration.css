@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color: aquamarine;
+    background: aqua;
+    background: -webkit-linear-gradient(top left, aqua 0%, #323232 100%);
+    background: linear-gradient(to bottom right, aqua 0%, #323232 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label{
+    display: none;
+}
+::placeholder{
+    color: aqua;
+    text-transform: uppercase;
+}
+/* landing section */
+#landing-section{
+    background: rgba(46, 46, 46, 0.75);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 8.0px );
+    -webkit-backdrop-filter: blur( 8.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+/* styling header section */
+#landing-section .header{
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-items: center; */
+}
+
+.header .logo img{
+    /* width: 100px; */
+    height: 50px;
+    object-fit: cover;  
+}
+
+.header .titles{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0px;
+    gap: 5px;
+    
+}
+.header .titles .title{
+    text-transform: uppercase;
+}
+.header .titles .subtitle{
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+/* styling main container section */
+#landing-section .main-container{
+height: 40vh;
+width: 100%;
+padding: 20px;
+}
+
+#landing-section .main-container .form{
+position: relative;
+width: 100%;
+padding: 10px;
+border: rgba( 255, 255, 255, 0.18 ) solid 3px;
+border-radius: 5px;
+height: 40vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-around;
+gap: 10px;
+}
+
+.main-container .form input{
+height: 3vh;
+width: 80%;
+border-radius: 5px;
+outline: none;
+border: none;
+padding: 5px;
+text-align: center;
+background-color: rgba( 255, 255, 255, 0.18 );
+color:rgba(46, 46, 46, 0.829);
+}
+
+.form .buttons {
+    width: 100%;
+}
+
+.form .buttons .button{
+    width: 100%;
+    color: aquamarine;
+}

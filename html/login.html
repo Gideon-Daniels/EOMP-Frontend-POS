@@ -12,7 +12,7 @@
     <div id="landing-section">
         <div class="header">
             <div class="logo">
-                <img src="" alt="logo">
+                <img src="../images/PinClipart.com_free-stock-clipart_81271.png" alt="logo">
             </div>
             <div class="titles">
                 <h1 class="title">Stay Connected</h1>
@@ -20,11 +20,11 @@
             </div>
         </div>
         <div class="main-container">
-            <form action="">
+            <form class="form" action="https://enigmatic-sierra-22968.herokuapp.com/auth" method="POST">
                 <label for="username" class="label">username</label>
                 <input type="text" class="input" name="username" id="username" placeholder="username" required >
                 <label for="username" class="label">password</label>
-                <input type="password" class="input" name="password" id="password" placeholder="username" required>
+                <input type="password" class="input" name="password" id="password" placeholder="password" required>
                 <div class="buttons">
                     <input type="submit" value="Register" class="button">
                     <input type="submit" value="Login" class="button">
@@ -32,9 +32,10 @@
             </form>
            
         </div>
-        <footer>
+        <!-- <footer>
             <h3>made by gideon daniels</h3>
-        </footer>
+        </footer> -->
     </div>
+    <script src="../scripts/main.js"></script>
 </body>
 </html>
