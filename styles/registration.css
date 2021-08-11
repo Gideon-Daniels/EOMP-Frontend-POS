@@ -105,9 +105,13 @@ color:rgba(46, 46, 46, 0.829);
 
 .form .buttons {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    
 }
 
 .form .buttons .button{
     width: 100%;
     color: aquamarine;
+    cursor: pointer;
 }
