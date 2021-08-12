@@ -18,20 +18,40 @@
             <div class="logo"><img src="../images/PinClipart.com_free-stock-clipart_81271.png" alt="logo"></div>
             <div class="navbar-links">
                 <ul class="links">
-                    <li class="link"><a href="" class="button">Products</a></li>
-                    <li class="link"><a href="" class="button">Create</a></li>
-                    <li class="link"><a href="" class="button">Cart</a></li>
-                    <li class="link"><a href="" class="button">Profile</a></li>
+                    <li class="link"><a href="#products" class="button" onclick="showContent('products')">Products</a></li>
+                    <li class="link"><a href="#create" class="button" onclick="showContent('create')">Create</a></li>
+                    <li class="link"><a href="#cart" class="button" onclick="showContent('cart')">Cart</a></li>
+                    <li class="link"><a href="#profile" class="button" onclick="showContent('profile')">Profile</a></li>
                 </ul>
             </div>
         </div>
         
         <!-- main-content-wrapper -->
-        <div class="main-content-wrapper">
-           <div class="left-section">
-            <h1>Products</h1>
-            <div class="category-links"></div>
-            <div class="products-container"></div>
+        <div id="" class="main-content-wrapper">
+           <div class="left-section">              
+                <!--///////////////////Products Section /////////////////////  -->
+                <div id="products" class="content active" >
+                    <h1>Products</h1>
+                    <form onsubmit="event.preventDefault(); searchForProducts()">
+                        <input type="text" id="searchItem">
+                        <button type="submit">searchItem</button>
+                    </form>
+                <div class="category-links"></div>
+                <div class="products-container"></div>
+               </div>    
+                 <!--/////////////////////Create Products //////////////  -->
+                 <div id="create" class="content ">
+
+                 </div>
+                 <!-- /////////////////////CART Section //////////////////-->
+                 <div id="cart" class="content ">
+
+                 </div>
+                 <!-- /////////////////////Profile Section //////////////// -->
+                 <div id="profile" class="content ">
+                     <h1>Profiles</h1>
+                     
+                 </div>
            </div>
            <div class="right-section"></div>
         </div>
