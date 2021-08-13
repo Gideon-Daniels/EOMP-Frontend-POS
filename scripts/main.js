@@ -31,8 +31,9 @@ function authorization(username,password){
 
 authorization();
 
-let products = [];
-let cart = [];
+///////////////////////////////// Products Functionality //////////////////////
+
+let products = []; // Add products to array
 
 function fecthProducts(){
   fetch( urlsShowProducts, {
@@ -59,7 +60,7 @@ function createdProducts(products){
     productsContainer.innerHTML += `
     <div class="product">
                       <div class="card-image">
-                          <img src="${products[i][3]}" alt="">
+                          <img src="${products[i][3]}" alt="${products[i][1]}">
                       </div>
                       <h3 class="title">${products[i][1]}</h3>
                       <div class="buttons">
@@ -73,17 +74,6 @@ function createdProducts(products){
   });
 }
 
-function addToCart(id){
-  let i=0;
-  let product = products.data.find(item => {
-    console.log(item)
-    return item[id]= id ; 
-  });
-  
-  console.log(products);
-  cart.push(product);
-  console.log(cart);
-}
 
 function searchForProducts(){
   let searchItem = document.querySelector("#searchItem").value;
@@ -99,6 +89,52 @@ function searchForProducts(){
   createdProducts(searchedProducts)
 }
 
+////////////////////////////////Create Products Functionality ///////////////////////////
+
+
+//////////////////////////////// Cart Products Funtionality/////////////////////////////
+let cart = []; // add products to array
+
+function addToCart(id){
+  let i=0;
+  let product = products.data.find(item => {
+     if (item[0] == id){
+       return item;
+     }
+  });
+  
+  console.log(product);
+  cart.push(product);
+  console.log("Items in Cart :", cart);
+  renderProdctsInCart(cart);
+}
+
+function renderProdctsInCart(cartProducts){
+  let cartContainer = document.querySelector("#cart");
+  cartContainer.innerHTML = "";
+  if (cartProducts.length > 1){
+    let i =0;
+    cartProducts.map((cartProduct) => {
+        cartContainer.innerHTML += `
+        <div class="product">
+        <div class="card-image">
+            <img src="${cartProduct[3]}" alt="${cartProduct[1]}">
+        </div>
+        <h3 class="title">${cartProduct[1]}</h3>
+        <div class="buttons">
+            <button class="delete-product button" onclick="deleteFromCart(${cartProduct[i][0]})">Delete</button>
+        </div>
+    </div>
+        `
+        i+=1;
+    });
+  }
+  else{
+    cartContainer.innerHTML =  "<h2> No Items in cart </h2>";
+  }
+}
+
+/////////////////////////////////Profile Functionality //////////////////////////
 users = []
 
 function fetchProfiles(){
@@ -119,26 +155,28 @@ function fetchProfiles(){
 fetchProfiles();
 
 function createProfile(profiles){
+  let i = 0;
     let profilesContainer = document.querySelector("#profile");
     profilesContainer.innerHTML ="";
     profiles.forEach( profile => {
       profilesContainer.innerHTML += `
           <div class="profiles-container">
               <div class="fullnames">
-                  <span class="name"></span>
-                  <span class="surname"></span>
+                  <span class="name">${profiles[i][1]}</span>
+                  <span class="surname">${profiles[i][2]}</span>
               </div>
               <div class="login-details">
-                  <span class="login-detail username"></span>
-                  <span class="login-details password"></span>
+                  <span class="login-detail username">${profiles[i][3]}</span>
+                  <span class="login-details password">${profiles[i][4]}</span>
               </div>
-              <span class="email"></span>
+              <span class="email">${profiles[i][5]}</span>
         </div>
         <div class="buttons button">
-          <button class="button">Update</button>
-          <button class="button">Delete</button> 
+          <button class="button" onclick="updateUser()">Update</button>
+          <button class="button" onclick="deleteUser()">Delete</button> 
         </div>
       `;
+      i += 1;
     });
 }
 

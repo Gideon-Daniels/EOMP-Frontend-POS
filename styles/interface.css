@@ -7,6 +7,7 @@
 body{
     min-height: 100vh;  
     font-family: Arial, Helvetica, sans-serif;
+    color: crimson;
 }
 li{
 list-style: none;
@@ -107,7 +108,7 @@ color: beige;
 text-align: center;
 border-bottom: peachpuff 5px solid;
 }
-.left-section .products-container{
+ .products-container{
     /* background-color: aliceblue; */
     /* height: 100%; */
     width: 100%;
@@ -136,7 +137,7 @@ border-bottom: peachpuff 5px solid;
     left: 0;
 }
 
-.left-section .products-container .product{
+ .products-container .product{
     background-color: darksalmon;
     display: flex;
     flex-direction: column;
