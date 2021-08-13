@@ -46,7 +46,7 @@ function fecthProducts(){
 .then(res => res.json())
 .then(data => {
   console.log(data)
-  products = data;
+  products = data.data;
   createdProducts(data.data);
 });
 }
@@ -63,18 +63,38 @@ function createdProducts(products){
                           <img src="${products[i][3]}" alt="${products[i][1]}">
                       </div>
                       <h3 class="title">${products[i][1]}</h3>
-                      <div class="buttons">
+                      <d class="buttons">
                           <button class="add-to-cart button" onclick="addToCart(${products[i][0]})">Buy</button>
                           <button class="edit-product button">Edit</button>
-                          <button class="delete-product button">Delete</button>
-                      </div>
+                          <button class="delete-product button" onclick="deleteProduct(${products[i][0]})">Delete</button>
+                      </d
                   </div>
                    `;
                    i+=1;
   });
 }
 
+function deleteProduct(id){
+    console.log(products)
 
+    console.log(id) 
+    let index=0;
+    let deletedProducts = products.find( item => {
+      console.log("item",item[0]);
+      if( item[0] == id){
+        products.splice(index,1);
+        createdProducts(products);
+      }     
+      else{
+        index += 1;
+      }
+    });
+  
+}
+
+
+
+//////////////////////Filters///////////////////
 function searchForProducts(){
   let searchItem = document.querySelector("#searchItem").value;
   console.log(searchItem);
@@ -89,15 +109,83 @@ function searchForProducts(){
   createdProducts(searchedProducts)
 }
 
+function sortName(){
+  let sortedProducts = products.sort((a,b) => {
+    if (a[1] < b[1]) return -1;
+    if (a[1] > b[1]) return 1;
+    return 0;
+  });
+
+  createdProducts(sortedProducts);
+}
+
+function sortNameDesc() {
+  let sortedProducts = products.sort((a,b) => {
+    if (a[1] < b[1]) return -1;
+    if (a[1] > b[1]) return 1;
+    return 0;
+  });
+
+  sortedProducts.reverse();
+  createdProducts(sortedProducts);
+
+}
+
+function sortPriceAsc(){
+  let sortedProducts = products.sort((a, b) => a[4] - b[4]);
+  createdProducts(sortedProducts);
+}
+
+function sortPriceDesc(){
+  let sortedProducts = products.sort((a, b) => a[4] - b[4]).reverse();
+  createdProducts(sortedProducts);
+}
 ////////////////////////////////Create Products Functionality ///////////////////////////
 
 
 //////////////////////////////// Cart Products Funtionality/////////////////////////////
 let cart = []; // add products to array
+//////////////Display Products ///////////////////
+function renderProdctsInCart(cartProducts){
+  let cartContainer = document.querySelector(".cart-container");
+  cartContainer.innerHTML = "";
 
+  if (cartProducts.length > 0){
+    let i =0;
+    cartProducts.map((cartProduct) => {
+        cartContainer.innerHTML += `
+        <div class="product">
+        <div class="card-image">
+            <img src="${cartProduct[3]}" alt="${cartProduct[1]}">
+        </div>
+        <h3 class="title">${cartProduct[1]}</h3>
+        <div class="buttons">
+            <button class="delete-product button" onclick="deleteFromCart(${cartProduct[0]})">Delete</button>
+        </div>
+    </div>
+        `
+        i+=1;
+    });
+
+    ////////////// calcutlates total price of products in cart/////////////
+    let totalPrice = cartProducts.reduce((total, item) => total + item[4], 0);
+    let cartInfo = document.querySelector(".cart-info");
+    cartInfo.innerHTML = `
+        <h3 class="total">Total Price : ${totalPrice}</h3>
+
+    `;
+    
+    console.log(totalPrice);
+
+  }
+  else{
+    cartContainer.innerHTML =  "<h2> No Items in cart </h2>";
+  }
+}
+//////////////////////// Adding and Deleting products in Cart Functions/////////////////
 function addToCart(id){
   let i=0;
-  let product = products.data.find(item => {
+  let product = products.find(item => {
      if (item[0] == id){
        return item;
      }
@@ -109,30 +197,23 @@ function addToCart(id){
   renderProdctsInCart(cart);
 }
 
-function renderProdctsInCart(cartProducts){
-  let cartContainer = document.querySelector("#cart");
-  cartContainer.innerHTML = "";
-  if (cartProducts.length > 1){
-    let i =0;
-    cartProducts.map((cartProduct) => {
-        cartContainer.innerHTML += `
-        <div class="product">
-        <div class="card-image">
-            <img src="${cartProduct[3]}" alt="${cartProduct[1]}">
-        </div>
-        <h3 class="title">${cartProduct[1]}</h3>
-        <div class="buttons">
-            <button class="delete-product button" onclick="deleteFromCart(${cartProduct[i][0]})">Delete</button>
-        </div>
-    </div>
-        `
-        i+=1;
-    });
-  }
-  else{
-    cartContainer.innerHTML =  "<h2> No Items in cart </h2>";
-  }
+function deleteFromCart(id){
+  console.log(id) 
+  let index = 0;
+  let product = cart.find( item => {
+    if (item[0] == id){
+      console.log(index)
+      cart.splice(index,1);
+      console.log(cart)
+      renderProdctsInCart(cart);
+    }
+    else{
+      index +=1;
+    }
+  });
 }
+////////////////////////////End Of Cart Products Functionality////////////////////
+
 
 /////////////////////////////////Profile Functionality //////////////////////////
 users = []
