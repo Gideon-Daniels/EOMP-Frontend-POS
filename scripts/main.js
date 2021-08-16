@@ -9,8 +9,8 @@ urlEditProduct = 'https://enigmatic-sierra-22968.herokuapp.com/edit-product/'//a
 urlDeleteProduct = 'https://enigmatic-sierra-22968.herokuapp.com/delete-product/' //add number next to it
 urlAddProduct = "https://enigmatic-sierra-22968.herokuapp.com/add-product/"
 urlShowTyp = "https://enigmatic-sierra-22968.herokuapp.com/" // add category
-let username = document.getElementsByName("username")
-let password = document.getElementsByName("password")
+let username = document.getElementsByName("username").value
+let password = document.getElementsByName("password").value
 
 function authorization(username,password){
   fetch(urlAuth, {
@@ -18,18 +18,18 @@ function authorization(username,password){
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({"username": "gideon", "password": "1234"})
+    body: JSON.stringify({"username": `${username}`, "password": `${password}`})
   }).then(res => res.json())
     .then(res => {
-              console.log(res);
-              
+              console.log(res);             
               console.log(res["access_token"]);
               console.log(myStorage)
               myStorage.setItem("jwt-token", res["access_token"]);
+              
      });
 }
 
-authorization();
+authorization(username, password);
 
 ///////////////////////////////// Products Functionality //////////////////////
 
@@ -55,25 +55,23 @@ fecthProducts();
 function createdProducts(products){
   let productsContainer = document.querySelector(".products-container");
   productsContainer.innerHTML = "";
-  let i=0;
   products.forEach((product) => {
     productsContainer.innerHTML += `
     <div class="product">
                       <div class="card-image">
-                          <img src="${products[i][3]}" alt="${products[i][1]}">
+                          <img src="${product[3]}" alt="${product[1]}">
                       </div>
-                      <h3 class="title">${products[i][1]}</h3>
+                      <h3 class="title">${product[1]}</h3>
                       <d class="buttons">
-                          <button class="add-to-cart button" onclick="addToCart(${products[i][0]})">Buy</button>
-                          <button class="edit-product button">Edit</button>
-                          <button class="delete-product button" onclick="deleteProduct(${products[i][0]})">Delete</button>
+                          <button class="add-to-cart button" onclick="addToCart(${product[0]})">Buy</button>
+                          <button class="update-product button" onclick="updateProduct(${product[0]})">Update</button>
+                          <button class="delete-product button" onclick="deleteProduct(${product[0]})">Delete</button>
                       </d
                   </div>
                    `;
-                   i+=1;
   });
 }
-
+//////////////////// delete products functionality///////////
 function deleteProduct(id){
     console.log(products)
 
@@ -83,6 +81,7 @@ function deleteProduct(id){
       console.log("item",item[0]);
       if( item[0] == id){
         products.splice(index,1);
+       
         createdProducts(products);
       }     
       else{
@@ -92,6 +91,43 @@ function deleteProduct(id){
   
 }
 
+//////////Update Products Functionality////
+
+let updateProducts = document.querySelector("#update-product");
+updateProducts.innerHTML="";
+
+function updateProduct(id){
+    product = products[id-1];
+    updateProducts.innerHTML =`                        
+    <form onsubmit="event.preventDefault()" id="update-products" class="forms" method="POST">
+        <h2 class="heading">Update Product</h2>
+        <input class="input" type="text" name="update-product-name" id="update-product-name" required placeholder="product name" value="${product[1]}">
+        <input class="input" type="text" name="update-product-description" id="update-product-description" required placeholder="product description" value="${product[2]}">
+        <input class="input" type="text" name="update-product-price" id="update-product-price" required placeholder="product price" value="R ${product[4]}">
+        <input class="input" type="text" name="update-product-type" id="update-product-type" required placeholder="product type" value="${product[5]}">
+        <input type="file" id="image" name="update-image" accept="image/png">
+        <input class = "button" type="submit" name="submit" type="submit" value="confirm">
+</form>
+    `;  
+     productsForm.style.backgroundColor = "darksalmon"
+}
+
+// function updateProducts(){
+//   let getUpdatedTitle = document.getElementById("update-product-name").value;
+
+//   fetch(urlEditProduct,{
+//     method: "put",
+//     headers: {
+//       "Authorization": `jwt ${myStorage.getItem("jwt-token")}`,
+//       "Content-Type": "application/json"
+//     },
+//     body: {
+//       "title": `${getUpdatedTitle}`,
+//       // "description": `${}`
+//     }
+//   })
+  
+// }
 
 
 //////////////////////Filters///////////////////
@@ -101,7 +137,7 @@ function searchForProducts(){
  
   let i=0;
   let searchedProducts = products.data.filter((product) =>{
-    products.data[i][1].toLowerCase().startsWith(searchItem.toLowerCase())
+    products[1].toLowerCase().startsWith(searchItem.toLowerCase())
     i+=1;
   });
   console.log(products.data[i][1]) 
@@ -142,14 +178,36 @@ function sortPriceDesc(){
 }
 ////////////////////////////////Create Products Functionality ///////////////////////////
 
+productsForm = document.querySelector(".create-container");
+productsForm.innerHTML = "";
+
+function formCreated(){
+  productsForm.innerHTML = `
+  <form onsubmit="event.preventDefault()" id="create-products" class="forms" method="POST">
+    <h2 class="heading">Create Product</h2>
+    <input class="input" type="text" name="product-name" id="product-name" required placeholder="product name">
+    <input class="input" type="textarea" name="product-description" id="product-description" required placeholder="product description">
+    <input class="input" type="text" name="product-price" id="product-price" required placeholder="product price">
+    <input class="input" type="text" name="product-type" id="product-type" required placeholder="product type">
+    <input type="file" id="image" name="image" accept="image/png">
+    <input class = "button" type="submit" name="submit" type="submit" value="register">
+</form>
+  `
+ 
+  return productsForm;
+}
+formCreated();
+
 
 //////////////////////////////// Cart Products Funtionality/////////////////////////////
 let cart = []; // add products to array
+let totalPrice = 0;
+
 //////////////Display Products ///////////////////
 function renderProdctsInCart(cartProducts){
   let cartContainer = document.querySelector(".cart-container");
   cartContainer.innerHTML = "";
-
+  
   if (cartProducts.length > 0){
     let i =0;
     cartProducts.map((cartProduct) => {
@@ -168,7 +226,7 @@ function renderProdctsInCart(cartProducts){
     });
 
     ////////////// calcutlates total price of products in cart/////////////
-    let totalPrice = cartProducts.reduce((total, item) => total + item[4], 0);
+     totalPrice = cartProducts.reduce((total, item) => total + item[4], 0);
     let cartInfo = document.querySelector(".cart-info");
     cartInfo.innerHTML = `
         <h3 class="total">Total Price : ${totalPrice}</h3>
@@ -204,13 +262,17 @@ function deleteFromCart(id){
     if (item[0] == id){
       console.log(index)
       cart.splice(index,1);
-      console.log(cart)
+      totalPrice = totalPrice - item[4]     
+      console.log(cart.length)
       renderProdctsInCart(cart);
+      
     }
     else{
       index +=1;
     }
   });
+
+  console.log(product)
 }
 ////////////////////////////End Of Cart Products Functionality////////////////////
 
@@ -229,28 +291,29 @@ function fetchProfiles(){
 .then(res => res.json())
 .then(data => {
   console.log(data)
-  users = data;
-  createProfile(data.data);
+  users = data.data;
 });
 }
 fetchProfiles();
 
-function createProfile(profiles){
+
+
+function createProfile(users){
   let i = 0;
     let profilesContainer = document.querySelector("#profile");
     profilesContainer.innerHTML ="";
-    profiles.forEach( profile => {
+    users.forEach( profile => {
       profilesContainer.innerHTML += `
           <div class="profiles-container">
               <div class="fullnames">
-                  <span class="name">${profiles[i][1]}</span>
-                  <span class="surname">${profiles[i][2]}</span>
+                  <span class="name">${profile[1]}</span>
+                  <span class="surname">${profile[2]}</span>
               </div>
               <div class="login-details">
-                  <span class="login-detail username">${profiles[i][3]}</span>
-                  <span class="login-details password">${profiles[i][4]}</span>
+                  <span class="login-detail username">${profile[3]}</span>
+                  <span class="login-details password">${profile[4]}</span>
               </div>
-              <span class="email">${profiles[i][5]}</span>
+              <span class="email">${profiles[5]}</span>
         </div>
         <div class="buttons button">
           <button class="button" onclick="updateUser()">Update</button>
@@ -261,6 +324,11 @@ function createProfile(profiles){
     });
 }
 
+function deleteProfile(){
+
+}
+
+//////////////////////////ADDITIONAL FUNCTIONS////////////////////////
 function showContent(contentName) {
   // Remove active from all classes
   let content = document.getElementsByClassName("content");
@@ -272,6 +340,3 @@ function showContent(contentName) {
   selectedContent.classList.add("active");
 }
 
-function deleteProfile(){
-
-}
