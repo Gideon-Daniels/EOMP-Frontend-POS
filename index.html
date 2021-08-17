@@ -22,14 +22,14 @@
             </div>
         </div>
         <div class="main-container">
-            <form class="form" action="" method="POST">
+            <form onsubmit="return validationLogin(); event.preventDefault();" class="form" action="./html/Interface.html">
                 <label for="username" class="label">username</label>
                 <input type="text" class="input" name="username" id="username" placeholder="username" required >
                 <label for="username" class="label">password</label>
                 <input type="password" class="input" name="password" id="password" placeholder="password" required>
                 <div class="buttons">
-                    <input type="submit" value="Register" class="button">
-                    <input type="submit" value="Login" class="button">
+                    <button type="submit"  class="button">Login</button>
+                    <a href="./html/registration.html" class="button">Register</a>
                 </div>
             </form>
            

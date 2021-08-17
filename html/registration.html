@@ -20,21 +20,23 @@
             </div>
         </div>
         <div class="main-container">
-            <form class="form" action="" method="POST">
+            <form onsubmit="return validationRegistration(); event.preventDefault();" class="form" action="" method="POST">
                 <label class="label" for="name">name</label>
-                <input class="input" type="text" name="name" id="name" required placeholder="name">
+                <input id="name" class="input" type="text" name="name"  required placeholder="name">
                 <label class="label" for="surname">surname</label>
-                <input class="input" type="text" name="surname" id="surname" required placeholder="surname">
+                <input id="surname" class="input" type="text" name="surname"  required placeholder="surname">
                 <label class="label" for="email">email</label>
-                <input class="input" type="email" name="email" id="email" required placeholder="email">
+                <input id="email" class="input" type="email" name="email"  required placeholder="email">
                 <label class="label" for="username">username</label>
-                <input class="input" type="text" name="username" id="username" required placeholder="username">
+                <input id="reg-username" class="input" type="text" name="username"  required placeholder="username">
                 <label class="label" for="password"></label>
-                <input class="input" type="password" name="password" id="password" required placeholder="password">
+                <input id="reg-password" class="input" type="password" name="password"  required placeholder="password">
                 <label class="label" for="confirm-password">confirm-password</label>
-                <input class="input"type="password" name="confirm-password" id="confirm-password" required placeholder="confirm password">
+                <input id="confirm-password" class="input"type="password" name="confirm-password"  required placeholder="confirm password">
                 <div class="buttons">
-                    <input class="button" name="submit" type="submit" value="register">
+                    <button type="submit" class="button">Register</button>
+                    <button class="button"> <a href="../index.html" >Back To Login</a></button>
+                   
                 </div>
             </form>
         </div>

@@ -7,20 +7,23 @@
 body{
     min-height: 100vh;  
     font-family: Arial, Helvetica, sans-serif;
-    color: crimson;
+    color: aquamarine;
+    background: aqua;
+    background: -webkit-linear-gradient(top left, aqua 0%, #323232 100%);
+    background: linear-gradient(to bottom right, aqua 0%, #323232 100%);
 }
 li{
 list-style: none;
 }
 a{
     text-decoration: none;
-    
+    color: aquamarine;
 }
 /* *******************END OF GLOBAL STYLES */
 
 
 #landing-section{
-    background-color: peachpuff;
+    
     width: 100%;
     min-height: 100vh;
     position: relative;
@@ -34,14 +37,14 @@ a{
     text-align: end;
     right: 0;
     padding: 10px;
-    /* color: crimson; */
+
 }
 
 .sidebar-navbar{
     position: relative;
     width: 20%;
     height: 95vh;
-    border-right: beige solid 2px;
+    border-right: aqua solid 2px;
     display: flex;
     flex-direction: column;
     z-index: 200;
@@ -73,15 +76,16 @@ a{
 }
 
 .navbar-links .links .link{
-    /* background-color: #323232; */
+   
     width: 100%;
-    /* height: 100%; */
+
     margin: 5px 0px;
 }
 
 .links .link .button{
-   color: crimson;
-   background-color: beige;
+  background: rgba(46, 46, 46, 0.75);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    backdrop-filter: blur( 8.0px );
    display: flex;
    justify-content: center;
    padding: 5px;
@@ -91,7 +95,7 @@ a{
 }
 
 .main-content-wrapper{
-   /* background-color: beige; */
+    
     width: 100%;
     margin-top: 10%;
     margin-left: 50px;
@@ -106,14 +110,15 @@ a{
     width: 50%;
     height: 100%;
     padding: 10px;
+    
 }
 .main-content-wrapper .left-section h1{
-color: beige;
+background-color: rgba(255, 255, 255, 0.295);
 text-align: center;
-border-bottom: peachpuff 5px solid;
+border-bottom: aqua 5px solid;
 }
  .products-container{
-    /* background-color: aliceblue; */
+    background-color: rgba(255, 255, 255, 0.295);
     height: 100%;
     width: 100%;
     display: flex;
@@ -131,7 +136,7 @@ border-bottom: peachpuff 5px solid;
     opacity: 0;
     overflow: hidden;
     transition: all 0.4s linear;
-    background: darksalmon;
+    
     height: 100%;
     width: 100%;
 }
@@ -143,26 +148,29 @@ border-bottom: peachpuff 5px solid;
 }
 
  .products-container .product{
-    background-color: darksalmon;
+    background: rgba(46, 46, 46, 0.75);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    backdrop-filter: blur( 8.0px );
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 5px;
-    border: beige solid 3px;
+    border: aqua solid 3px;
     width: 30%;
     height: 50%;
     padding: 10px;
+    
 }
 
 .products-container .product .card-image{
     width: 100%;
-    border: beige solid 2px;
+    border: aqua solid 2px;
     height: 50%;
 }
 
 .products-container .product .title{
-    color : beige;
+    color : white;
     text-transform: uppercase;
     font-size: 12px;
 }
@@ -217,25 +225,25 @@ border-bottom: peachpuff 5px solid;
 
 .cart-container .product{
     position: relative;
-    background-color: darksalmon;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 5px;
-    border: beige solid 3px;
+    border: aqua solid 3px;
     width: 30%;
     padding: 10px;
     height: 48%;
 }
 .cart-container .product .card-image{
     width: 100%;
-    border: beige solid 2px;
+    border: aqua;
     height: 50%;
 }
 
 .cart-container .product .title{
-    color : beige;
+    background-color: rgba(255, 255, 255, 0.295);
     text-transform: uppercase;
     font-size: 12px;
 }
@@ -266,11 +274,11 @@ border-bottom: peachpuff 5px solid;
     justify-content: space-evenly;
     align-items: center;
     padding: 10px;
-    border: 5px solid beige;
+    border: 5px solid aqua;
 }
 .forms .heading{
-    color: darksalmon;
-    background-color: beige;
+    background-color: rgba(255, 255, 255, 0.295);
+    
     padding: 20px;
 }
 .forms .input{
@@ -288,10 +296,29 @@ border-bottom: peachpuff 5px solid;
     width: 50%;
     padding: 20px;
     font-size: 20px;
-    color: darksalmon;
-    background-color: beige;
+    background-color: rgba(255, 255, 255, 0.295);
+    
     border: none;
     cursor: pointer;
 }
 
 
+/* ///////////////////users profile ////////////////*/
+
+.profiles-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: rgba(46, 46, 46, 0.75);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    backdrop-filter: blur( 8.0px );
+}
+.fullnames{
+    background-color: aquamarine;
+    padding: 20px;
+    color: rgba(46, 46, 46, 0.75);
+    width: 100%;
+    text-align: center;
+}
