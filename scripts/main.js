@@ -1,6 +1,5 @@
 /////////////////////////////////////////// Data from API////////////////////////////////////////
 myStorage = window.localStorage;
-urlAuth = "https://enigmatic-sierra-22968.herokuapp.com/auth";
 urlsShowUsers = "https://enigmatic-sierra-22968.herokuapp.com/show-users/";
 urlsShowProducts =
   "https://enigmatic-sierra-22968.herokuapp.com/show-products/";
@@ -13,6 +12,7 @@ urlShowTyp = "https://enigmatic-sierra-22968.herokuapp.com/"; // add category
 function validationLogin(){
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
+  console.log(username);
   
   if(username.value.trim() == "" )
   {
@@ -24,7 +24,6 @@ function validationLogin(){
     return false
   }
   else{
-    authorization();
     return true
   }
   
@@ -68,24 +67,6 @@ function validationRegistration(){
 }
 registeredUsers = []
 
-function authorization() {
-  fetch(urlAuth, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username: "gideon", password: "1234" }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      console.log(data["access_token"]);
-      console.log(myStorage);
-      myStorage.setItem("jwt-token", data["access_token"]);
-    });
-}
-
-authorization();
 ///////////////////////////////// Products Functionality //////////////////////
 
 let products = []; // Add products to array
