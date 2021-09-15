@@ -9,6 +9,7 @@ urlDeleteProduct =
 urlAddProduct = "https://enigmatic-sierra-22968.herokuapp.com/add-product/";
 urlShowTyp = "https://enigmatic-sierra-22968.herokuapp.com/"; // add category
 
+
 function validationLogin(){
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
@@ -26,7 +27,6 @@ function validationLogin(){
   else{
     return true
   }
-  
 }
 
 function validationRegistration(){
@@ -61,12 +61,9 @@ function validationRegistration(){
       password: password.trim(),
       confPassword:confPassword.trim()
     }
-    registeredUsers.push(regUser)
     return  true
   }
 }
-registeredUsers = []
-
 ///////////////////////////////// Products Functionality //////////////////////
 
 let products = []; // Add products to array

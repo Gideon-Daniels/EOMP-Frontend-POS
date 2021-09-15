@@ -25,6 +25,7 @@ fetch("https://enigmatic-sierra-22968.herokuapp.com/auth", {
             return;
           }
           else{
+              
               window.location = "./html/Interface.html"
           }
 
@@ -32,19 +33,12 @@ fetch("https://enigmatic-sierra-22968.herokuapp.com/auth", {
 }
 
 function Register(){
-    let name = document.querySelector("#name").value
+    let first_name = document.querySelector("#name").value
     let surname = document.querySelector("#surname").value
     let email = document.querySelector("#email").value
-    let regUsername = document.querySelector("#reg-username").value
-    let regPassword = document.querySelector("#reg-password").value
+    let username = document.querySelector("#reg-username").value
+    let password = document.querySelector("#reg-password").value
 
-    console.log(
-        name,
-        surname,
-        email,
-        regUsername,
-        regPassword,
-    )
 
     fetch("https://enigmatic-sierra-22968.herokuapp.com/user-registration/", {
         method: "post",
@@ -52,10 +46,10 @@ function Register(){
           "Content-Type": "application/json; charset=UTF-8",
         },
         body: JSON.stringify({ 
-            name,
+            first_name,
             surname,
-            regUsername,
-            regPassword,
+            username,
+            password,
             email,
          }),
       })
@@ -65,7 +59,7 @@ function Register(){
             if(res.status_code == 201){
                 document.querySelector("#error").innerHTML = "You have successfully registered. Please login to continue"
                 setTimeout(function (){
-                    window.location = "./index.html"
+                    window.location = "../index.html"
                 }, 3000 )
             }
         });
