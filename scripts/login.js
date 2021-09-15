@@ -40,7 +40,7 @@ function Register(){
     let password = document.querySelector("#reg-password").value
 
 
-    fetch("https://enigmatic-sierra-22968.herokuapp.com/user-registration/", {
+    fetch("https://enigmatic-sierra-22968.herokuapp.com/users/", {
         method: "post",
         headers: {
           "Content-Type": "application/json; charset=UTF-8",

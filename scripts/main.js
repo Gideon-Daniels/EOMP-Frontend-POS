@@ -1,14 +1,5 @@
-/////////////////////////////////////////// Data from API////////////////////////////////////////
-myStorage = window.localStorage;
-urlsShowUsers = "https://enigmatic-sierra-22968.herokuapp.com/show-users/";
-urlsShowProducts =
-  "https://enigmatic-sierra-22968.herokuapp.com/show-products/";
-urlEditProduct = "https://enigmatic-sierra-22968.herokuapp.com/edit-product/"; //add number next to it
-urlDeleteProduct =
-  "https://enigmatic-sierra-22968.herokuapp.com/delete-product/"; //add number next to it
-urlAddProduct = "https://enigmatic-sierra-22968.herokuapp.com/add-product/";
-urlShowTyp = "https://enigmatic-sierra-22968.herokuapp.com/"; // add category
 
+myStorage = window.localStorage;
 
 function validationLogin(){
   let username = document.getElementById("username").value;
@@ -69,8 +60,8 @@ function validationRegistration(){
 let products = []; // Add products to array
 
 function fecthProducts() {
-  fetch(urlsShowProducts, {
-    method: "get",
+  fetch("https://enigmatic-sierra-22968.herokuapp.com/products/", {
+    method: "GET",
     headers: {
       Authorization: `jwt ${myStorage.getItem("jwt-token")}`,
       "Content-Type": "application/json",
@@ -145,22 +136,34 @@ function updateProduct(id) {
 
 }
 
-// function updateProducts(){
-//   let getUpdatedTitle = document.getElementById("update-product-name").value;
+class Products{
+  constructor(user_id, title, description, price, quantity, type){
+    this.user_id = user_id;
+    this.title = title;
+    this.description = description;
+    this.price = price;
+    this.quantity = quantity;
+    this.type = type;
+    
+  }
+}
 
-//   fetch(urlEditProduct,{
-//     method: "put",
-//     headers: {
-//       "Authorization": `jwt ${myStorage.getItem("jwt-token")}`,
-//       "Content-Type": "application/json"
-//     },
-//     body: {
-//       "title": `${getUpdatedTitle}`,
-//       // "description": `${}`
-//     }
-//   })
+function updateProducts(){
+  let getUpdatedTitle = document.getElementById("update-product-name").value;
 
-// }
+  fetch("https://enigmatic-sierra-22968.herokuapp.com/products/",{
+    method: "put",
+    headers: {
+      "Authorization": `jwt ${myStorage.getItem("jwt-token")}`,
+      "Content-Type": "application/json"
+    },
+    body: {
+      "title": `${getUpdatedTitle}`,
+      
+    }
+  })
+
+}
 
 //////////////////////Filters///////////////////
 function searchForProducts() {
@@ -306,8 +309,8 @@ function deleteFromCart(id) {
 users = [];
 
 function fetchProfiles() {
-  fetch(urlsShowUsers, {
-    method: "get",
+  fetch("https://enigmatic-sierra-22968.herokuapp.com/users/", {
+    method: "GET",
     headers: {
       Authorization: `jwt ${myStorage.getItem("jwt-token")}`,
       "Content-Type": "application/json",
